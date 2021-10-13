@@ -1,0 +1,100 @@
+SQL CREATE (DDL Statements)
+CREATE SCHEMA PANTHERMARKET;
+ 
+USE PANTHERMARKET;
+-- Creating Supplier Table
+CREATE TABLE tblSupplier(
+	PK_supplierID  VARCHAR(20) NOT NULL, 
+	supp_name 	   VARCHAR(50) NOT NULL, 
+	supp_location  VARCHAR(50),
+	PRIMARY KEY (PK_supplierID)
+);
+
+-- Creating Product Category Table
+CREATE TABLE tblProductCategory(
+	PK_categoryID     VARCHAR(20)  NOT NULL,
+	cat_name	      VARCHAR(50),
+	cat_desc          VARCHAR(150),
+	PRIMARY KEY (PK_categoryID)
+);
+
+-- Creating Product Table
+CREATE TABLE tblProduct(
+	PK_productID           VARCHAR(20) NOT NULL,
+	prod_name              VARCHAR(50) NOT NULL,
+	prod_description       VARCHAR(100),
+	prod_price             DOUBLE(6,2), 
+	prod_tot_qty		   INT,
+	FK_categoryID          VARCHAR(20),
+	FK_supplierID          VARCHAR(20),
+	FOREIGN KEY (FK_categoryID) REFERENCES tblProductCategory (PK_categoryID),
+	FOREIGN KEY (FK_supplierID) REFERENCES tblSupplier (PK_supplierID),
+	PRIMARY KEY (PK_productID)
+);
+
+-- Creating Customer Table
+CREATE TABLE tblCustomer(
+	PK_customerID		VARCHAR(20) NOT NULL,
+	cust_name			VARCHAR(50) NOT NULL,
+	cust_email			VARCHAR(40),
+	PRIMARY KEY (PK_customerID)
+);
+
+-- Creating Branch Table
+CREATE TABLE tblBranch(
+	PK_branchID     VARCHAR(20) NOT NULL,
+	br_location	    VARCHAR(30),
+	br_size	     	VARCHAR(30),
+	PRIMARY KEY (PK_branchID)
+);
+
+-- Creating Employee Table
+CREATE TABLE tblEmployee(
+	PK_employeeID	VARCHAR(20) NOT NULL,
+	emp_name		VARCHAR(50),
+	emp_hiredate   	DATE,
+	emp_managerID	VARCHAR(50),
+	emp_status		VARCHAR(20),
+	emp_designation VARCHAR(20),
+	FK_branchID		VARCHAR(20),
+	PRIMARY KEY (PK_employeeID),
+    FOREIGN KEY (FK_branchID) REFERENCES tblBranch (PK_branchID)
+    ON DELETE CASCADE
+);
+
+-- Creating Fulfillment Table
+CREATE TABLE tblFulfillment(
+	FK_productID	 VARCHAR(20),
+	FK_branchID      VARCHAR(20),
+	ful_quantity		 INT,
+	ful_date          DATE,
+	FOREIGN KEY (FK_branchID) REFERENCES tblBranch (PK_branchID),
+	FOREIGN KEY (FK_productID) REFERENCES tblProduct (PK_productID),
+	PRIMARY KEY (FK_productID,FK_branchID)
+);
+
+-- Creating Transaction Table
+CREATE TABLE tblTransaction( 
+	PK_transactionID     VARCHAR(20) NOT NULL,
+	trans_date           DATE,
+	trans_amount	     INT,
+	trans_paymenttype    VARCHAR(20),
+	trans_tax		     INT,
+	FK_customerID 	     VARCHAR(20),
+	FK_employeeID       VARCHAR(20),
+	FK_branchID 		VARCHAR(20),
+	FOREIGN KEY (FK_customerID) REFERENCES tblCustomer (PK_customerID),
+	FOREIGN KEY (FK_branchID) REFERENCES tblBranch (PK_branchID),
+	FOREIGN KEY (FK_employeeID) REFERENCES tblEmployee (PK_employeeID),
+	PRIMARY KEY (PK_transactionID)
+);
+
+-- Creating Transaction_has_Product Table
+CREATE TABLE tblTransaction_has_Product(
+	FK_productID	 VARCHAR(20),
+	FK_transactionID VARCHAR(20),
+	Quantity		 INT,
+	FOREIGN KEY (FK_transactionID) REFERENCES tblTransaction (PK_transactionID),
+	FOREIGN KEY (FK_productID) REFERENCES tblProduct (PK_productID),
+	PRIMARY KEY (FK_productID, FK_transactionID)
+);		      
