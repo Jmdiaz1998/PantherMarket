@@ -1,0 +1,192 @@
+SQL INSERT (DML Statements)
+-- inserting data
+
+-- Supplier data
+insert into tblSupplier values('FL0001', 'Miami Foods', 'Miami');
+insert into tblSupplier values('FL0002', 'Soda King', 'Doral');
+insert into tblSupplier values('FL0003', 'Miami Performance', 'Miami');
+insert into tblSupplier values('FL0004', 'Gables Food Service', 'Coral Gables');
+insert into tblSupplier values('FL0005', 'America Foods', 'Doral');
+insert into tblSupplier values('FL0006', 'East Coast Foods', 'Kendall');
+insert into tblSupplier values('FL0007', 'Farm Transportation Services', 'Homestead');
+insert into tblSupplier values('FL0008', 'Food Logistics', 'Kendall');
+
+
+
+
+
+-- Product Category data
+insert into tblProductCategory values('B001', 'Bakery & Bread', 'Flour-based food baked in an oven');
+insert into tblProductCategory values('D001', 'Dairy, Eggs & Cheese', 'Eggs and foods produced from the milk');
+insert into tblProductCategory values('F001', 'Frozen Foods', 'Food that has been subjected to rapid freezing and is kept frozen until used');
+insert into tblProductCategory values('G001', 'Grains, Pasta & Sides', 'Food made from wheat, rice, oats, cornmeal, barley, or another cereal grain');
+insert into tblProductCategory values('B002', 'Beverages', 'A drink, especially one other than water.');
+
+-- Product data
+insert into tblProduct values('A00B21C0', 'Bear Green Tea, Bags', '20 tea bags included', 3.89, 15, 'B002', 'FL0005');
+insert into tblProduct values('GA003A88', 'Homestead Natural Juice, Orange', '64oz', 6.25, 8, 'B002', 'FL0007');
+insert into tblProduct values('C3E421FI', 'King Club Soda Pack', '6x 12 fl oz', 3.99, 4, 'B002', 'FL0002');
+insert into tblProduct values('E901AB32', 'East Flavors Chocolate Drink Pack', '10x 6.5 fl oz', 4.39, 12, 'B002', 'FL0006');
+
+insert into tblProduct values('A02C320A', 'Miami Bakers Brownie Platter, Medium', '24-count', 15.99, 4, 'B001', 'FL0001');
+insert into tblProduct values('C103BA91', 'Miami Bakers Glazed Donuts Pack', '6-count', 4.59, 9, 'B001', 'FL0001');
+insert into tblProduct values('LB510A12', 'Bear Butterbread, Bread', '20oz', 3.99, 15, 'B001', 'FL0005');
+insert into tblProduct values('E220BW01', 'Bear Brioche Buns', '4-count', 3.49, 9, 'B001', 'FL0005');
+insert into tblProduct values('G2W3AA88', 'Homestead Apple Pie', '34oz', 6.79, 4, 'B001', 'FL0007');
+
+insert into tblProduct values('I30J11L0', 'Homestead Large Grade A Eggs, Large', '18-count', 4.27, 15, 'D001', 'FL0007');
+insert into tblProduct values('A200L3A8', 'Wow 2% Reduced Fat Milk', '1 gallon', 4.99, 18, 'D001', 'FL0003');
+insert into tblProduct values('JK001M3A', 'Wow Cottage Cheese', '16oz', 3.99, 6, 'D001', 'FL0003');
+insert into tblProduct values('M033YA87', 'Gables Vegetable Oil Spread', '15oz', 3.49, 15, 'D001', 'FL0004');
+insert into tblProduct values('C92B0K45', 'Gables Low Fat Probiotic Yogurt, Strawberry', '12x 4oz', 6.99, 8, 'D001', 'FL0004');
+
+insert into tblProduct values('RE88L053', 'East Flavors Pepperoni Pizza', '18oz', 5.99, 9, 'F001', 'FL0006');
+insert into tblProduct values('Y30B3O11', 'Kendall Ice Bag', '20lb', 3.99, 12, 'F001', 'FL0008');
+insert into tblProduct values('ZB44L808', 'Kendall Premium Cookies & Cream Ice Cream', '1qt', 4.29, 10, 'F001', 'FL0008');
+
+insert into tblProduct values('H22L31A0', 'Wow Spaghetti', '16oz', 1.89, 12, 'G001', 'FL0003');
+insert into tblProduct values('YA30AB02', 'Bear Extra Long Enriched Rice', '5lb', 4.99, 12, 'G001', 'FL0005');
+insert into tblProduct values('A11BB033', 'Wow Black Beans', '16oz', 1.89, 9, 'G001', 'FL0003');
+-- Branch Data
+insert into tblBranch values('PM001', 'Coral Way', 'Medium'); 
+insert into tblBranch values('PM002', 'Downtown', 'Large');
+insert into tblBranch values('PM003', 'Lummus Park', 'Medium');
+
+
+-- Customer Data
+insert into tblCustomer values('Pmc001', 'Anthony Joseph', 'AJ257@gmail.com');
+insert into tblCustomer values('Pmc002', 'Robert Bruce Banner', 'Rbb2206@gmail.com');
+insert into tblCustomer values('Pmc003', 'Richard Milhouse', 'Rick@gmail.com');
+insert into tblCustomer values('Pmc004', 'Mathew George', 'MG258@gmail.com');
+insert into tblCustomer values('Pmc005', 'Anthony Edward', 'AE259@gmail.com');
+insert into tblCustomer values('Pmc006', 'Hank Pym', 'Hank6@gmail.com');
+insert into tblCustomer values('Pmc007', 'Steven Grant Rogers', 'Srogers@gmail.com');
+
+
+-- Employee Data
+insert into tblEmployee values('E001','Annalisa Klick ','2019-12-17 00:00:00','NULL','Full Time','Regional Manager','PM001');
+insert into tblEmployee values('E101','Jeneva Brisco ','2020-02-11 00:00:00','E100','Full Time','Manager','PM001');
+insert into tblEmployee values('E102','Rosaura Galaviz','2020-02-18 00:00:00','E101','Part time','Sales Person','PM001');
+insert into tblEmployee values('E103','Rachal Ligon ','2020-03-27 00:00:00','E101','Full Time','Cashier','PM001');
+insert into tblEmployee values('E201','Zachary Perrine','2020-06-18 00:00:00','E100','Full Time','Manager','PM002');
+insert into tblEmployee values('E202','Duane Clow ','2020-06-26 00:00:00','E201','Part time','Sales Person','PM002');
+insert into tblEmployee values('E203','Eda Triana ','2020-07-24 00:00:00','E202','Full Time','Cashier','PM002');
+insert into tblEmployee values('E301','Renata Cardenas','2020-10-28 00:00:00','E100','Full Time','Manager','PM003');
+insert into tblEmployee values('E302','Donnie Burrill ','2021-05-28 00:00:00','E301','Part time','Sales Person','PM003');
+insert into tblEmployee values('E303','Nam Gloor ','2021-07-23 00:00:00','E301','Full Time','Cashier','PM003');
+
+Transaction data
+insert into tblTransaction values('A012B4H8', '2021-05-16 14:07:32', 19.86, 'Cash', 1.30, 'Pmc001', 'E103', 'PM001');
+insert into tblTransaction values('G2884LO9', '2021-05-23 09:34:02', 23.86, 'Debit Card', 1.56, 'Pmc002','E203', 'PM002');
+insert into tblTransaction values('J33L01M3', '2021-08-05 13:50:43', 22.42, 'Credit Card', 1.47, 'Pmc003', 'E303', 'PM003');
+insert into tblTransaction values('C045B3K9', '2021-07-02 16:12:58', 18.90, 'Credit Card', 1.24, 'Pmc005', 'E202', 'PM002' );
+insert into tblTransaction values('K120A64O', '2021-06-28 10:24:08', 19.51, 'Cash', 1.28, 'Pmc004', 'E103','PM001');
+insert into tblTransaction values('H35L003M', '2021-06-19 15:27:39', 30.75, 'Credit Card', 2.01, 'Pmc007', 'E102', 'PM001' );
+insert into tblTransaction values('W0L55M34', '2021-07-23 11:54:23', 25.16, 'Credit Card', 1.65, 'Pmc001', 'E202', 'PM002' );
+insert into tblTransaction values('F405A33B', '2021-07-08 09:48:03', 21.87, 'Cash', 1.43, 'Pmc006','E203', 'PM002');
+insert into tblTransaction values('B86H529S', '2021-08-24 17:31:24', 43.27, 'Debit Card', 2.83, 'Pmc006','E303', 'PM003' );
+insert into tblTransaction values('P02U71L5', '2021-09-04 17:08:22', 12.81, 'Credit Card', 0.84, 'Pmc003', 'E302','PM003' );
+insert into tblTransaction values('P02U71K9', '2021-09-04 17:08:22', 12.81, 'Cash', 0.84, 'Pmc003', 'E302','PM003' );
+
+-- Transaction_has_Product data
+insert into tblTransaction_has_Product values('A00B21C0', 'A012B4H8', 2);
+insert into tblTransaction_has_Product values('LB510A12', 'A012B4H8', 1);
+insert into tblTransaction_has_Product values('G2W3AA88', 'A012B4H8', 1);
+ 
+insert into tblTransaction_has_Product values('I30J11L0', 'G2884LO9', 1);
+insert into tblTransaction_has_Product values('ZB44L808', 'G2884LO9', 2);
+insert into tblTransaction_has_Product values('A11BB033', 'G2884LO9', 2);
+insert into tblTransaction_has_Product values('H22L31A0', 'G2884LO9', 3);
+ 
+insert into tblTransaction_has_Product values('A200L3A8', 'J33L01M3', 2);
+insert into tblTransaction_has_Product values('M033YA87', 'J33L01M3', 2);
+insert into tblTransaction_has_Product values('LB510A12', 'J33L01M3', 1);
+ 
+insert into tblTransaction_has_Product values('C103BA91', 'C045B3K9', 1);
+insert into tblTransaction_has_Product values('E901AB32', 'C045B3K9', 2);
+insert into tblTransaction_has_Product values('ZB44L808', 'C045B3K9', 1);
+ 
+insert into tblTransaction_has_Product values('RE88L053', 'K120A64O', 2);
+insert into tblTransaction_has_Product values('GA003A88', 'K120A64O', 1);
+ 
+insert into tblTransaction_has_Product values('GA003A88', 'H35L003M', 2);
+insert into tblTransaction_has_Product values('I30J11L0', 'H35L003M', 1);
+insert into tblTransaction_has_Product values('LB510A12', 'H35L003M', 2);
+insert into tblTransaction_has_Product values('JK001M3A', 'H35L003M', 1);
+ 
+insert into tblTransaction_has_Product values('A200L3A8', 'W0L55M34', 3);
+insert into tblTransaction_has_Product values('I30J11L0', 'W0L55M34', 2);
+ 
+insert into tblTransaction_has_Product values('A11BB033', 'F405A33B', 3);
+insert into tblTransaction_has_Product values('C3E421FI', 'F405A33B', 2);
+insert into tblTransaction_has_Product values('G2W3AA88', 'F405A33B', 1);
+
+insert into tblTransaction_has_Product values('C92B0K45', 'B86H529S', 2);
+insert into tblTransaction_has_Product values('A02C320A', 'B86H529S', 1);
+insert into tblTransaction_has_Product values('E220BW01', 'B86H529S', 2);
+insert into tblTransaction_has_Product values('M033YA87', 'B86H529S', 1);
+ 
+insert into tblTransaction_has_Product values('Y30B3O11', 'P02U71L5', 3);
+insert into tblTransaction_has_Product values('Y30B3O11', 'P02U71K9', 3);
+
+
+-- Fulfillment Data
+insert into tblFulfillment values('A00B21C0', 'PM001', 9, '2021-04-10 9:12:21');
+insert into tblFulfillment values('GA003A88', 'PM001', 4, '2021-04-12 14:23:04');
+insert into tblFulfillment values('E901AB32', 'PM001', 3, '2021-04-20 17:09:11');
+insert into tblFulfillment values('A02C320A', 'PM001', 1, '2021-04-22 11:22:09');
+insert into tblFulfillment values('C103BA91', 'PM001', 3, '2021-04-23 16:43:58');
+insert into tblFulfillment values('LB510A12', 'PM001', 6, '2021-04-26 11:05:53');
+insert into tblFulfillment values('E220BW01', 'PM001', 2, '2021-04-27 10:09:42');
+insert into tblFulfillment values('G2W3AA88', 'PM001', 2, '2021-04-27 14:41:19');
+insert into tblFulfillment values('I30J11L0', 'PM001', 4, '2021-04-29 11:33:49');
+insert into tblFulfillment values('A200L3A8', 'PM001', 4, '2021-04-30 16:38:03');
+insert into tblFulfillment values('JK001M3A', 'PM001', 3, '2021-05-02 9:04:47');
+insert into tblFulfillment values('M033YA87', 'PM001', 4, '2021-05-03 15:31:05');
+insert into tblFulfillment values('C92B0K45', 'PM001', 5, '2021-05-03 17:12:31');
+insert into tblFulfillment values('RE88L053', 'PM001', 2, '2021-05-04 10:57:44');
+insert into tblFulfillment values('Y30B3O11', 'PM001', 2, '2021-05-04 9:01:09');
+insert into tblFulfillment values('ZB44L808', 'PM001', 2, '2021-05-06 14:37:56');
+insert into tblFulfillment values('H22L31A0', 'PM001', 3, '2021-05-08 12:11:47');
+insert into tblFulfillment values('YA30AB02', 'PM001', 4, '2021-05-08 11:56:17');
+insert into tblFulfillment values('A11BB033', 'PM001', 1, '2021-05-10 13:48:14');
+
+insert into tblFulfillment values('A00B21C0', 'PM002', 3, '2021-04-10 10:22:10');
+insert into tblFulfillment values('GA003A88', 'PM002', 2, '2021-04-12 15:32:12');
+insert into tblFulfillment values('C3E421FI', 'PM002', 4, '2021-04-12 16:24:54');
+insert into tblFulfillment values('E901AB32', 'PM002', 6, '2021-04-20 18:51:12');
+insert into tblFulfillment values('C103BA91', 'PM002', 3, '2021-04-23 17:53:04');
+insert into tblFulfillment values('LB510A12', 'PM002', 4, '2021-04-26 12:01:36');
+insert into tblFulfillment values('E220BW01', 'PM002', 3, '2021-04-27 11:04:31');
+insert into tblFulfillment values('G2W3AA88', 'PM002', 2, '2021-04-27 15:39:58');
+insert into tblFulfillment values('I30J11L0', 'PM002', 7, '2021-04-29 12:18:39');
+insert into tblFulfillment values('A200L3A8', 'PM002', 7, '2021-04-30 17:42:23');
+insert into tblFulfillment values('JK001M3A', 'PM002', 1, '2021-05-02 10:06:08');
+insert into tblFulfillment values('M033YA87', 'PM002', 4, '2021-05-03 16:37:11');
+insert into tblFulfillment values('C92B0K45', 'PM002', 2, '2021-05-03 18:16:08');
+insert into tblFulfillment values('RE88L053', 'PM002', 2, '2021-05-04 11:54:33');
+insert into tblFulfillment values('Y30B3O11', 'PM002', 4, '2021-05-04 9:58:27');
+insert into tblFulfillment values('ZB44L808', 'PM002', 3, '2021-05-06 15:34:49');
+insert into tblFulfillment values('H22L31A0', 'PM002', 7, '2021-05-08 13:08:11');
+insert into tblFulfillment values('YA30AB02', 'PM002', 4, '2021-05-08 12:55:01');
+insert into tblFulfillment values('A11BB033', 'PM002', 6, '2021-05-10 14:49:07');
+
+insert into tblFulfillment values('A00B21C0', 'PM003', 3, '2021-04-10 10:49:22');
+insert into tblFulfillment values('GA003A88', 'PM003', 2, '2021-04-12 15:54:07');
+insert into tblFulfillment values('E901AB32', 'PM003', 3, '2021-04-20 19:24:55');
+insert into tblFulfillment values('A02C320A', 'PM003', 3, '2021-04-22 12:38:14');
+insert into tblFulfillment values('C103BA91', 'PM003', 3, '2021-04-23 18:28:26');
+insert into tblFulfillment values('LB510A12', 'PM003', 5, '2021-04-26 12:30:44');
+insert into tblFulfillment values('E220BW01', 'PM003', 4, '2021-04-27 11:32:54');
+insert into tblFulfillment values('I30J11L0', 'PM003', 4, '2021-04-29 12:47:02');
+insert into tblFulfillment values('A200L3A8', 'PM003', 7, '2021-04-30 18:18:50');
+insert into tblFulfillment values('JK001M3A', 'PM003', 2, '2021-05-02 10:35:29');
+insert into tblFulfillment values('M033YA87', 'PM003', 7, '2021-05-03 17:14:03');
+insert into tblFulfillment values('C92B0K45', 'PM003', 4, '2021-05-03 18:57:41');
+insert into tblFulfillment values('RE88L053', 'PM003', 2, '2021-05-04 12:23:18');
+insert into tblFulfillment values('Y30B3O11', 'PM003', 6, '2021-05-04 10:28:58');
+insert into tblFulfillment values('ZB44L808', 'PM003', 3, '2021-05-06 16:01:35');
+insert into tblFulfillment values('H22L31A0', 'PM003', 2, '2021-05-08 13:37:46');
+insert into tblFulfillment values('YA30AB02', 'PM003', 4, '2021-05-08 13:26:22');
+insert into tblFulfillment values('A11BB033', 'PM003', 2, '2021-05-10 15:21:13');
+
