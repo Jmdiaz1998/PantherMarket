@@ -1,0 +1,342 @@
+Find the employees located Downtown who are part-time workers. 
+SELECt e.* FROM tblEmployee e, tblBranch b
+WHERE e.FK_branchID = b.PK_branchID
+AND b.br_location = 'Downtown'
+AND e.emp_status = 'Part Time';
+ 
+ 
+Query Execution
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+| PK_employeeID      | emp_name      | emp_hiredate      | emp_managerID      | emp_status      | emp_designation      | FK_branchID      |
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+| E202               | Duane Clow    | 2020-06-26        | E201               | Part time       | Sales Person         | PM002            |
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+1 rows
+ 
+Find the customer who has placed the most number of orders in the year 2021 . 
+ 
+SELECT c.PK_customerID as 'CUSTOMER ID',c.cust_name as 'CUSTOMER NAME' , COUNT(c.PK_customerID) as 'NO OF ORDERS' , b.br_location as 'BRANCH LOCATION'
+FROM tblTransaction t, tblCustomer c, tblbranch b
+WHERE t.FK_customerID = c.PK_customerID
+AND t.FK_branchid = b.PK_branchid
+AND t.trans_date > '2021-01-01' AND t.trans_date < '2021-10-01'
+GROUP BY FK_customerID 
+ORDER BY COUNT(*) DESC, FK_branchID; 
+ 
+ 
+ 
+ 
+Query Execution:
++ ---------------- + ------------------ + ----------------- +
+| CUSTOMER ID  	| CUSTOMER NAME  	| NO OF ORDERS  	|
++ ---------------- + ------------------ + ----------------- +
+| Pmc003       	| Richard Milhouse   | 4             	|
+| Pmc001       	| Anthony Joseph 	| 2             	|
+| Pmc006       	| Hank Pym       	| 2             	|
+| Pmc005       	| Anthony Edward 	| 1             	|
+| Pmc002       	| Robert Bruce Banner | 1             	|
+| Pmc007       	| Steven Grant Rogers | 1             	|
+| Pmc004       	| Mathew George  	| 1             	|
++ ---------------- + ------------------ + ----------------- +
+7 rows
+ 
+ 
+ 
+Application Mockup:
+ 
+
+ 
+ 
+Find suppliers that have supplied the market with less than 3 products. 
+SELECT s.*
+FROM tblSupplier s, tblProduct p
+WHERE s.PK_supplierID = p.FK_supplierID
+		GROUP BY s.PK_supplierID
+   		HAVING COUNT(DISTINCT p.PK_productID) < 3;
+ 
+	Query Execution:
++ ------------------ + -------------- + ------------------ +
+| PK_supplierID    | supp_name    | supp_location    |
++ ------------------ + -------------- + ------------------ +
+| FL0001     	  | Miami Foods  | Miami      	  |
+| FL0002     	  | Soda King    | Doral      	  |
+| FL0004     	  | Gables Food Service | Coral Gables       |
+| FL0006     	  | East Coast Foods | Kendall    	  |
+| FL0008     	  | Food Logistics | Kendall    	  |
++ ------------------ + -------------- + ------------------ +
+5 rows
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Application Mockup:
+
+List the top 5 sold products in the Coral Way branch. 
+select p.pk_productID, p.prod_name, f.ful_quantity, b.br_location
+from tblproduct p
+join tblfulfillment f
+on p.PK_productID = f.FK_productID
+join tblbranch b
+on f.FK_branchID = b.pk_branchID
+where b.br_location = "Coral Way"
+order by ful_quantity DESC LIMIT 5;
+ 
+ 
+Query Execution:
++ ----------------- + -------------- + ----------------- +
+| pk_productID  	| prod_name  	| ful_quantity  	|
++ ----------------- + -------------- + ----------------- +
+| A00B21C0      	| Bear Green Tea, Bags | 9             	|
+| LB510A12      	| Bear Butterbread, Bread | 6             	|
+| C92B0K45      	| Gables Low Fat Probiotic Yogurt, Strawberry | 5          |
+| A200L3A8      	| Wow 2% Reduced Fat Milk | 4             	|
+| I30J11L0      	| Homestead Large Grade A Eggs, Large | 4             	|
++ ----------------- + -------------- + ----------------- +
+5 rows
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Application Mockup:
+
+ 
+Find the employee with the most transactions in August. 
+Select DISTINCT e.*
+FROM tblEmployee e, tblTransaction t
+WHERE e.PK_employeeID = t.FK_employeeID
+	AND t.trans_date >= '2021-08-01' AND t.trans_date <= '2021-08-31'
+   	 GROUP BY t.FK_employeeID
+    	AND t.trans_amount = (SELECT MAX(t.trans_amount));
+ 
+ 
+Query Execution
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+| PK_employeeID      | emp_name      | emp_hiredate      | emp_managerID      | emp_status      | emp_designation      | FK_branchID      |
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+| E303               | Nam Gloor     | 2021-07-23        | E301               | Full Time       | Cashier              | PM003            |
++ ------------------ + ------------- + ----------------- + ------------------ + --------------- + -------------------- + ---------------- +
+1 rows
+ 
+Find customers who bought ice cream and the same transaction amount was at least $18.00. 
+SELECT DISTINCT c.*
+FROM tblCustomer c, tblTransaction t, tblTransaction_has_Product tp, tblproduct p  
+WHERE c.PK_customerID = t.FK_customerID
+	AND t.PK_transactionID = tp.FK_transactionID
+    	AND p.PK_productID =tp.FK_productID
+    	AND prod_name LIKE '%ice cream%'
+    	AND t.trans_amount >= 18;
+
+Query Execution:
++ ------------------ + -------------- + --------------- +
+| PK_customerID    | cust_name    | cust_email    |
++ ------------------ + -------------- + --------------- +
+| Pmc005     	  | Anthony Edward | AE259@gmail.com |
+| Pmc002     	  | Robert Bruce Banner | Rbb2206@gmail.com |
++ ------------------ + -------------- + --------------- +
+2 rows
+
+Find the branch that had the most transactions and the branch with the least transactions between July and September. 
+ 
+(SELECT FK_branchID as 'BRANCH ID', b.br_location as 'BRANCH LOCATION', COUNT(distinct PK_TransactionID) CNT
+FROM tblTransaction t, tblbranch b
+WHERE t.trans_date > '2021-06-01' AND t.trans_date < '2021-09-30'
+AND b.PK_branchID = t.FK_branchID
+group by FK_branchID
+Order by CNT asc
+LIMIT 1) 
+UNION
+(SELECT FK_branchID, b.br_location as 'BRANCH LOCATION', COUNT(distinct PK_TransactionID) CNT
+FROM tblTransaction t, tblbranch b
+WHERE t.trans_date > '2021-06-01' AND t.trans_date < '2021-09-30'
+AND b.PK_branchID = t.FK_branchID
+group by FK_branchID
+Order by CNT desc 
+LIMIT 1) ;
+ 
+ 
+Query Execution:
++ -------------- + -------------------- + -------- +
+| BRANCH ID      | BRANCH LOCATION      | CNT      |
++ -------------- + -------------------- + -------- +
+| PM001          | Coral Way            | 2        |
+| PM003          | Lummus Park          | 4        |
++ -------------- + -------------------- + -------- +
+2 rows
+ 
+List the total sales amount for each branch across each month. 
+select year(t.trans_date) as 'YEAR',month(t.trans_date) as 'MONTH',sum(t.trans_amount) as 'SALES AMOUNT', b.br_location as 'Branch Location'
+from tblTransaction t, tblBranch b
+WHERE t.FK_branchid = b.PK_branchID
+group by year(t.trans_date),month(t.trans_date), t.FK_branchID
+order by year(t.trans_date),month(t.trans_date);
+Query Execution:
++ --------- + ---------- + ----------------- + -------------------- +
+| YEAR    | MONTH    | SALES AMOUNT    | Branch Location    |
++ --------- + ---------- + ----------------- + -------------------- +
+| 2021    | 5  	  | 20        	  | Coral Way    	  |
+| 2021    | 5  	  | 24        	  | DownTown     	  |
+| 2021    | 6  	  | 51        	  | Coral Way    	  |
+| 2021    | 6  	  | 13        	  | DownTown     	  |
+| 2021    | 7  	  | 66        	  | DownTown     	  |
+| 2021    | 8  	  | 65        	  | Lummus Park  	  |
+| 2021    | 9	    | 26        	  | Lummus Park  	  |
+| 2021    | 10 	  | 13        	  | Lummus Park  	  |
++ --------- + ---------- + ----------------- + -------------------- +
+8 rows
+ 
+ 
+ 
+Application Mockup:
+
+ 
+ 
+ 
+ 
+Find the branches that have not been fulfilled with King Club Soda Pack. 
+SELECT DISTINCT b.* 
+FROM tblBranch b
+WHERE b.PK_branchID NOT IN (
+	SELECT f.FK_branchID 
+    	FROM tblFulfillment f, tblProduct p
+	WHERE f.FK_productID = p.PK_productID
+	AND p.prod_name = 'King Club Soda Pack');
+ 
+Query Execution
++ ---------------- + ---------------- + ------------ +
+| PK_branchID      | br_location      | br_size      |
++ ---------------- + ---------------- + ------------ +
+| PM001            | Coral Way        | Medium       |
+| PM003            | Lummus Park      | Medium       |
+| NULL             | NULL             | NULL         |
++ ---------------- + ---------------- + ------------ +
+3 rows
+ 
+Find the transactions that have no more than 2 quantities for each product. 
+SELECT DISTINCT t.*
+FROM tblTransaction t
+WHERE t.PK_transactionID NOT IN (
+	SELECT tp.FK_transactionID
+    FROM tblTransaction_has_Product tp, tblProduct p
+    WHERE tp.FK_productID = p.PK_productID
+    AND tp.quantity >2);
+ 
+Query Execution
+ 
++ --------------------- + --------------- + ----------------- + ---------------------- + -------------- + ------------------ + ------------------ + ---------------- +
+| PK_transactionID      | trans_date      | trans_amount      | trans_paymenttype      | trans_tax      | FK_customerID      | FK_employeeID      | FK_branchID      |
++ --------------------- + --------------- + ----------------- + ---------------------- + -------------- + ------------------ + ------------------ + ---------------- +
+| A012B4H8              | 2021-05-16      | 20                | Cash                   | 1              | Pmc001             | E103               | PM001            |
+| B86H529S              | 2021-08-24      | 43                | Debit Card             | 3              | Pmc006             | E303               | PM003            |
+| C045B3K9              | 2021-07-02      | 19                | Credit Card            | 1              | Pmc005             | E202               | PM002            |
+| H35L003M              | 2021-06-19      | 31                | Credit Card            | 2              | Pmc007             | E102               | PM001            |
+| J33L01M3              | 2021-08-05      | 22                | Credit Card            | 1              | Pmc003             | E303               | PM003            |
+| K120A64O              | 2021-06-28      | 20                | Cash                   | 1              | Pmc004             | E103               | PM001            |
+| NULL                  | NULL            | NULL              | NULL                   | NULL           | NULL               | NULL               | NULL             |
++ --------------------- + --------------- + ----------------- + ---------------------- + -------------- + ------------------ + ------------------ + ---------------- +
+7 rows
+ 
+Find the suppliers that have supplied the market with 8 or more quantities for each product they supplied. 
+SELECT DISTINCT s.*
+FROM tblSupplier s
+WHERE s.PK_supplierID NOT IN (
+	SELECT p.FK_supplierID
+    FROM tblProduct p
+    WHERE prod_tot_qty < 8);
+ 
+ 
+Query Execution
+ 
++ ------------------ + -------------- + ------------------ +
+| PK_supplierID      | supp_name      | supp_location      |
++ ------------------ + -------------- + ------------------ +
+| FL0004             | Gables Food Service | Coral Gables       |
+| FL0005             | America Foods  | Doral              |
+| FL0006             | East Coast Foods | Kendall            |
+| FL0008             | Food Logistics | Kendall            |
+| NULL               | NULL           | NULL               |
++ ------------------ + -------------- + ------------------ +
+5 rows
+ 
+ 
+ 
+ 
+Find the branch who has all the products supplied by Farm Transportation Services. 
+ 
+SELECT b.*
+FROM  tblBranch b, tblFulfillment f, tblProduct p, tblSupplier s
+WHERE p.FK_supplierID = s.PK_supplierID
+AND s.supp_name = 'Farm Transportation Services'
+AND f.FK_branchID = b.PK_branchID
+AND p.PK_productID = f.FK_productID
+AND p.FK_supplierID = s.PK_supplierID
+GROUP BY b.PK_branchID
+HAVING count(*) = (SELECT count(*) from tblProduct p, tblSupplier s where p.FK_supplierID = s.PK_supplierID AND s.supp_name = 'Farm Transportation Services');
+ 
+Query Execution
+ 
++ ---------------- + ---------------- + ------------ +
+| PK_branchID      | br_location      | br_size      |
++ ---------------- + ---------------- + ------------ +
+| PM001            | Coral Way        | Medium       |
+| PM002            | Downtown         | Large        |
++ ---------------- + ---------------- + ------------ +
+2 rows
+ 
+ 
+ 
+ 
+Find the branch who has all the products supplied by Food Logistic and have less than 3 quantities for each product. 
+SELECT b.*
+FROM  tblBranch b, tblFulfillment f, tblProduct p, tblSupplier s
+WHERE p.FK_supplierID = s.PK_supplierID
+AND s.supp_name = 'Food Logistics'
+AND f.FK_branchID = b.PK_branchID
+AND p.PK_productID = f.FK_productID
+AND p.FK_supplierID = s.PK_supplierID
+AND f.ful_quantity < 3
+GROUP BY b.PK_branchID
+HAVING count(*) = (SELECT count(*) from tblProduct p, tblSupplier s where  p.FK_supplierID = s.PK_supplierID AND s.supp_name = 'Food Logistics');
+ 
+Query Execution:
++ ---------------- + ---------------- + ------------ +
+| PK_branchID    | br_location    | br_size    |
++ ---------------- + ---------------- + ------------ +
+| PM001    	  | Coral Way	  | Medium     |
++ ---------------- + ---------------- + ------------ +
+1 rows
+ 
+ 
+ 
+DASHBOARD SAMPLES
+
+
+
