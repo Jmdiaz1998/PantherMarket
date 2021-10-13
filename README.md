@@ -1,1 +1,9 @@
 # PantherMarket
+
+For this project, we decided to design a database system for a small supermarket chain named PantherMarket. The guiding design of this database is based on the transactions made due to purchases at any given location for this grocer. The database includes entities ranging from the supplier of the products to the customer, customer and items included in the transaction.
+
+Our dabase design consists of related entities from Panther Market that end with the transaction information of the product and the customer who purchased it. The databse stores information for the location (Branch) of the individual store, the registered inventory of said store (Product), the first-party and third-party suppliers of said inventory (Supplier), the staff employed at the location (Employee), and the customer engaging in the purchase of the product (Customer) and (Transaction), among others. 
+
+The entitites mentioned above are referenced in the final receipt of every individual transaction so as to keep relevent data regarding total sales at the location, the generated revenue from total sales, the total number of transactions, payment information, and employee handling of transactions. This information will be used to identify any critical areas of interest regarding the transactions at each individual store so as to optimize staff availability, sufficient inventory of popular products, and further investments to be determined in the business analysis for quarterly reports. 
+
+Every entity has both information exclusive to the entity as well as the ones referenced in other entities. For example, sales tax is relevant only at the point of purchase for any item in the Transaction entity whereas the price of an item will originate in the Product entity but carry through to the Transaction entity when the item is purchased.
